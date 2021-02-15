@@ -1,15 +1,39 @@
 [tool.poetry]
 name = "rich-dataframe"
-version = "0.1.0"
-description = "Create animated and prettify Pandas dataframe"
+version = "0.1.2"
+description = "Create animated and pretty Pandas Dataframe"
 authors = ["khuyentran1401 <khuyentran1476@gmail.com>"]
+homepage = "https://github.com/khuyentran1401/rich-dataframe"
+repository = "https://github.com/khuyentran1401/rich-dataframe"
+keywords = ['pandas']
+readme = "README.md"
+exclude= ["images"]
 
 [tool.poetry.dependencies]
 python = "3.7.8^"
 rich = "^9.10.0"
 pandas = "^1.2.2"
+sklearn = "^0.0"
 
 [tool.poetry.dev-dependencies]
+pre-commit = "^2.10.1"
+
+[tool.black]
+line-length = 79
+include = '\.pyi?$'
+exclude = '''
+/(
+    \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | _build
+  | buck-out
+  | build
+  | dist
+)/
+'''
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
