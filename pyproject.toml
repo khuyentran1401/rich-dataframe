@@ -17,6 +17,7 @@ sklearn = "^0.0"
 
 [tool.poetry.dev-dependencies]
 pre-commit = "^2.10.1"
+isort = "^5.7.0"
 
 [tool.black]
 line-length = 79
