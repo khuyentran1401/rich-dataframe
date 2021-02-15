@@ -18,6 +18,8 @@ sklearn = "^0.0"
 [tool.poetry.dev-dependencies]
 pre-commit = "^2.10.1"
 isort = "^5.7.0"
+black = "^20.8b1"
+flake8 = "^3.8.4"
 
 [tool.black]
 line-length = 79
