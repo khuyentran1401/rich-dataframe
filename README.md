@@ -23,7 +23,7 @@ table = prettify(speed_dating)
     
 ```
 
-If you want to pass a non-dataframe object, `rich_dataframe` get it covered too!
+If you want to pass a non-dataframe object, `rich_dataframe` got it covered too!
 ```python 
 from rich_dataframe import prettify
 
