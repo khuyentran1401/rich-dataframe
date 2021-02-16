@@ -84,7 +84,7 @@ class DataFramePrettify:
     def _add_columns(self):
         for col in self.columns:
             with beat(self.delay_time):
-                self.table.add_column(col)
+                self.table.add_column(str(col))
 
     def _add_rows(self):
         for row in self.rows:
