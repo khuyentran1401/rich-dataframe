@@ -12,7 +12,7 @@ from rich.table import Table
 
 console = Console()
 
-BEAT_TIME = 0.004
+BEAT_TIME = 0.008
 
 COLORS = ["cyan", "magenta", "red", "green", "blue", "purple"]
 
@@ -60,6 +60,7 @@ class DataFramePrettify:
         self.num_colors = len(COLORS)
         self.delay_time = delay_time
         self.row_limit = row_limit
+        self.first_rows = first_rows
         self.col_limit = col_limit
         self.first_cols = first_cols
 
@@ -114,7 +115,7 @@ class DataFramePrettify:
                 )
 
     def _adjust_box(self):
-        for box in [MINIMAL, SIMPLE, SIMPLE_HEAD, SQUARE]:
+        for box in [SIMPLE_HEAD, SIMPLE, MINIMAL, SQUARE]:
             with beat(self.delay_time):
                 self.table.box = box
 
@@ -123,7 +124,8 @@ class DataFramePrettify:
             self.table.row_styles = ["none", "dim"]
 
     def _adjust_border_color(self):
-        self.table.border_style = "bright_yellow"
+        with beat(self.delay_time):
+            self.table.border_style = "bright_yellow"
 
     def _change_width(self):
         original_width = Measurement.get(console, self.table).maximum
@@ -136,19 +138,28 @@ class DataFramePrettify:
 
         for width_range in width_ranges:
             for width in range(*width_range):
-                with beat(1):
+                with beat(self.delay_time):
                     self.table.width = width
 
-            with beat(1):
+            with beat(self.delay_time):
                 self.table.width = None
 
     def _add_caption(self):
+        if self.first_rows:
+            row_text = "first"
+        else:
+            row_text = "last"
+        if self.first_cols:
+            col_text = "first"
+        else:
+            col_text = "last"
+
         with beat(self.delay_time):
-            self.table.caption = f"Only {self.row_limit} rows and {self.col_limit} columns is shown here."
+            self.table.caption = f"Only the {row_text} {self.row_limit} rows and the {col_text} {self.col_limit} columns is shown here."
         with beat(self.delay_time):
-            self.table.caption = f"Only [bold green] {self.row_limit} rows[/bold green] and [bold red]{self.col_limit} columns[/bold red] is shown here."
+            self.table.caption = f"Only the [bold green] {row_text} {self.row_limit} rows[/bold green] and the [bold red]{self.col_limit} {col_text} columns[/bold red] is shown here."
         with beat(self.delay_time):
-            self.table.caption = f"Only [bold magenta not dim] {self.row_limit} rows[/bold magenta not dim] and [bold green not dim]{self.col_limit} columns[/bold green not dim] are shown here."
+            self.table.caption = f"Only the [bold magenta not dim] {row_text} {self.row_limit} rows[/bold magenta not dim] and the [bold green not dim]{col_text} {self.col_limit} columns[/bold green not dim] are shown here."
 
     def prettify(self):
         with Live(
@@ -162,9 +173,39 @@ class DataFramePrettify:
             self._move_text_to_right()
             self._add_random_color()
             self._add_style()
-            self._adjust_box()
+            # self._adjust_box()
             self._adjust_border_color()
-            self._change_width()
+            # self._change_width()
             self._add_caption()
 
         return self.table
+
+
+def prettify(
+    df: pd.DataFrame,
+    row_limit: int = 20,
+    col_limit: int = 10,
+    first_rows: bool = True,
+    first_cols: bool = True,
+    delay_time: int = 5,
+):
+    """Create animated and pretty Pandas DataFrame
+
+    Parameters
+    ----------
+    df : pd.DataFrame
+        The data you want to prettify
+    row_limit : int, optional
+        Number of rows to show, by default 20
+    col_limit : int, optional
+        Number of columns to show, by default 10
+    first_rows : bool, optional
+        Whether to show first n rows or last n rows, by default True. If this is set to False, show last n rows.
+    first_cols : bool, optional
+        Whether to show first n columns or last n columns, by default True. If this is set to False, show last n rows.
+    delay_time : int, optional
+        How fast is the animation, by default 5. Increase this to have slower animation.
+    """
+    DataFramePrettify(
+        df, row_limit, col_limit, first_rows, first_cols, delay_time
+    ).prettify()
