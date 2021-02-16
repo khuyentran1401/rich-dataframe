@@ -24,6 +24,9 @@ def beat(length: int = 1) -> None:
     time.sleep(length * BEAT_TIME)
 
 
+# TODO: Add index
+
+
 class DataFramePrettify:
     """Create animated and pretty Pandas DataFrame
 
@@ -52,7 +55,7 @@ class DataFramePrettify:
         first_cols: bool = True,
         delay_time: int = 5,
     ) -> None:
-        self.df = df
+        self.df = df.reset_index().rename(columns={"index": ""})
         self.table = Table(show_footer=False)
         self.table_centered = Columns(
             (self.table,), align="center", expand=True
