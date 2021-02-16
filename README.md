@@ -3,9 +3,9 @@
 
 # Rich DataFrame
 
-Create animated and pretty Pandas Dataframe, as shown below:
+Create animated and pretty Pandas Dataframe or Pandas Series, as shown below:
 
-![image](https://github.com/khuyentran1401/rich-dataframe/blob/master/prettify_table.gif?raw=True)
+![image](https://github.com/khuyentran1401/rich-dataframe/blob/master/images/prettify_table.gif?raw=True)
 
 # Installation
 ```bash
@@ -22,6 +22,15 @@ speed_dating = fetch_openml(name='SpeedDating', version=1)['frame']
 table = prettify(speed_dating)
     
 ```
+
+If you want to pass a non-dataframe object, `rich_dataframe` get it covered too!
+```python 
+from rich_dataframe import prettify
+
+var = {'a': 1, 'b': 3}
+prettify(var)
+```
+![image](https://github.com/khuyentran1401/rich-dataframe/blob/master/images/non_dataframe.png?raw=True)
 ## Parameters
 * **df: pd.DataFrame**
 The data you want to prettify

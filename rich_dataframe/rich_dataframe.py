@@ -24,7 +24,7 @@ def beat(length: int = 1) -> None:
     time.sleep(length * BEAT_TIME)
 
 
-# TODO: Add index
+# TODO: Add error message when not using this with pandas
 
 
 class DataFramePrettify:
@@ -209,6 +209,11 @@ def prettify(
     delay_time : int, optional
         How fast is the animation, by default 5. Increase this to have slower animation.
     """
-    DataFramePrettify(
-        df, row_limit, col_limit, first_rows, first_cols, delay_time
-    ).prettify()
+    if isinstance(df, pd.DataFrame) or isinstance(df, pd.DataFrame):
+        DataFramePrettify(
+            df, row_limit, col_limit, first_rows, first_cols, delay_time
+        ).prettify()
+
+    else:
+        # In case users accidentally pass a non-datafame input, use rich's print instead
+        print(df)
