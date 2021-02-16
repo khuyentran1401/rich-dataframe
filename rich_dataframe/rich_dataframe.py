@@ -67,9 +67,7 @@ class DataFramePrettify:
         self.col_limit = col_limit
         self.first_cols = first_cols
 
-        if isinstance(df, pd.Series):
-            self.columns = [self.df.name]
-        elif first_cols:
+        if first_cols:
             self.columns = self.df.columns[:col_limit]
         else:
             self.columns = self.df.columns[-col_limit:]
