@@ -24,9 +24,6 @@ def beat(length: int = 1) -> None:
     time.sleep(length * BEAT_TIME)
 
 
-# TODO: Add error message when not using this with pandas
-
-
 class DataFramePrettify:
     """Create animated and pretty Pandas DataFrame
 
