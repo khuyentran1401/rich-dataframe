@@ -67,14 +67,13 @@ class DataFramePrettify:
         if first_cols:
             self.columns = self.df.columns[:col_limit]
         else:
-            self.columns = self.df.columns[-col_limit:]
+            self.columns = list(self.df.columns[-col_limit:])
+            self.columns.insert(0, "index")
 
         if first_rows:
             self.rows = self.df.values[:row_limit]
         else:
             self.rows = self.df.values[-row_limit:]
-
-        print(self.columns)
 
         console.clear()
 
