@@ -51,6 +51,7 @@ class DataFramePrettify:
         first_rows: bool = True,
         first_cols: bool = True,
         delay_time: int = 5,
+        clear_console: bool = True,
     ) -> None:
         self.df = df.reset_index().rename(columns={"index": ""})
         self.table = Table(show_footer=False)
@@ -63,6 +64,7 @@ class DataFramePrettify:
         self.first_rows = first_rows
         self.col_limit = col_limit
         self.first_cols = first_cols
+        self.clear_console = clear_console
 
         if first_cols:
             self.columns = self.df.columns[:col_limit]
@@ -74,8 +76,9 @@ class DataFramePrettify:
             self.rows = self.df.values[:row_limit]
         else:
             self.rows = self.df.values[-row_limit:]
-
-        console.clear()
+        
+        if self.clear_console:
+            console.clear()
 
     def _add_columns(self):
         for col in self.columns:
@@ -187,6 +190,7 @@ def prettify(
     first_rows: bool = True,
     first_cols: bool = True,
     delay_time: int = 5,
+    clear_console: bool = True,
 ):
     """Create animated and pretty Pandas DataFrame
 
@@ -204,10 +208,12 @@ def prettify(
         Whether to show first n columns or last n columns, by default True. If this is set to False, show last n rows.
     delay_time : int, optional
         How fast is the animation, by default 5. Increase this to have slower animation.
+    clear_console: bool, optional
+        Clear the console before priting the table, by default True. If this is set to false the previous console input/output is maintained
     """
     if isinstance(df, pd.DataFrame) or isinstance(df, pd.DataFrame):
         DataFramePrettify(
-            df, row_limit, col_limit, first_rows, first_cols, delay_time
+            df, row_limit, col_limit, first_rows, first_cols, delay_time,clear_console
         ).prettify()
 
     else:
