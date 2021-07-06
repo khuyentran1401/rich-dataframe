@@ -44,4 +44,5 @@ The data you want to prettify
     Whether to show first n columns or last n columns, by default `True`. If this is set to `False`, show last n rows.
 * **delay_time : int, optional**
     How fast is the animation, by default `5`. Increase this to have slower animation.
-
+* **clear_console: bool, optional**
+    Clear the console before priting the table, by default True. If this is set to false the previous console input/output is maintained
