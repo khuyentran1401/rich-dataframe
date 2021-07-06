@@ -41,6 +41,8 @@ class DataFramePrettify:
         Whether to show first n columns or last n columns, by default True. If this is set to False, show last n rows.
     delay_time : int, optional
         How fast is the animation, by default 5. Increase this to have slower animation.
+    clear_console: bool, optional
+         Clear the console before printing the table, by default True. If this is set to False the previous console input/output is maintained
     """
 
     def __init__(
@@ -175,9 +177,7 @@ class DataFramePrettify:
             self._move_text_to_right()
             self._add_random_color()
             self._add_style()
-            # self._adjust_box()
             self._adjust_border_color()
-            # self._change_width()
             self._add_caption()
 
         return self.table

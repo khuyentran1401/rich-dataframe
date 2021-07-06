@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "rich-dataframe"
-version = "0.1.9.6"
+version = "0.2.0"
 description = "Create animated and pretty Pandas Dataframe"
 authors = ["khuyentran1401 <khuyentran1476@gmail.com>"]
 homepage = "https://github.com/khuyentran1401/rich-dataframe"
