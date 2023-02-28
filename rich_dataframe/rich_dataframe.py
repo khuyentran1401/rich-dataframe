@@ -209,7 +209,7 @@ def prettify(
     delay_time : int, optional
         How fast is the animation, by default 5. Increase this to have slower animation.
     clear_console: bool, optional
-        Clear the console before priting the table, by default True. If this is set to false the previous console input/output is maintained
+        Clear the console before printing the table, by default True. If this is set to false the previous console input/output is maintained
     """
     if isinstance(df, pd.DataFrame) or isinstance(df, pd.DataFrame):
         DataFramePrettify(
