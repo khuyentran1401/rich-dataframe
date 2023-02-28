@@ -211,7 +211,7 @@ def prettify(
     clear_console: bool, optional
         Clear the console before priting the table, by default True. If this is set to false the previous console input/output is maintained
     """
-    if isinstance(df, pd.DataFrame) or isinstance(df, pd.DataFrame):
+    if isinstance(df, pd.DataFrame):
         DataFramePrettify(
             df, row_limit, col_limit, first_rows, first_cols, delay_time,clear_console
         ).prettify()
