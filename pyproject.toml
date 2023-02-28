@@ -12,9 +12,9 @@ license = "Apache-2.0"
 
 [tool.poetry.dependencies]
 python = "^3.7.1"
-rich = "^9.10.0"
 sklearn = "^0.0"
 pandas = "^1.2.2"
+rich = "^10.13.0"
 
 [tool.poetry.dev-dependencies]
 pre-commit = "^2.10.1"
